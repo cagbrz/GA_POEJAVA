@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - neme: Hello World !
-      - run:  echo "Hello, worlds ?"
+      - name: Hello World !
+        run: echo "Hello, worlds ?"
