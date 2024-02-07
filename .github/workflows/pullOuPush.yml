@@ -1,18 +1,24 @@
 name: Env
 
 #workflow déclanché à la main
-on: workflow_dispatch
+on: [push, pull_request]
 
 env:
-    NAME: "push"
+    PUSH: "C'est un push!"
+    PULL: "C'est une pull request"
 
 jobs:
     say_hello:
-        run_on: ubuntu-lastest
-        env:
-            ENTREPRISE: Semifir
-        Steps:
-            - if: '$NAME == push'
-                run: echo "C'est un push"
-            - if: '$NAME == pull'
-                run: echo "c'est une pull request"
+        push: 
+            run_on: ubuntu-lastest
+            Steps:
+                - uses: actions/checkout@v3
+                - name: Push
+                run : echo "$PUSH"
+    pull_request:
+        runs-on: ubuntu-lastest
+        if: ${{github.event_name == "pull_request"}}
+        steps:
+            - uses: actions/checkout@v3
+            - name: Pull Request
+            run: echo "$PULL_REQUEST
