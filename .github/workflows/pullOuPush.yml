@@ -1,0 +1,18 @@
+name: Env
+
+#workflow déclanché à la main
+on: workflow_dispatch
+
+env:
+    NAME: "push"
+
+jobs:
+    say_hello:
+        run_on: ubuntu-lastest
+        env:
+            ENTREPRISE: Semifir
+        Steps:
+            - if: '$NAME == push'
+                run: echo "C'est un push"
+            - if: '$NAME == pull'
+                run: echo "c'est une pull request"
